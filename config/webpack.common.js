@@ -197,19 +197,6 @@ module.exports = function (options) {
         }
       ),
 
-      /*
-       * Plugin: CopyWebpackPlugin
-       * Description: Copy files and directories in webpack.
-       *
-       * Copies project static assets.
-       *
-       * See: https://www.npmjs.com/package/copy-webpack-plugin
-       */
-      new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' },
-        { from: 'src/meta'}
-      ]),
-
 
       /*
        * Plugin: HtmlWebpackPlugin
