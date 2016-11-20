@@ -6,18 +6,27 @@ import { Component } from '@angular/core';
   template:`
   <div>
     <h5>{{ resource.name }}</h5>
-    <mdl-textfield type="text" label="Text..." placeholder="type a text" ></mdl-textfield> 
+    <mdl-textfield  [(ngModel)]="value" type="text" label="Text..." placeholder="type a text" ></mdl-textfield> 
   </div>
   `
 })
 export class EditStringComponent {
   resource;
+  value;
   constructor() {
 
   }
 
   init(res){
     this.resource = res;
+  }
+
+  getResource(){
+    return this.resource;
+  }
+
+  getValue(){
+    return this.value;
   }
 
 

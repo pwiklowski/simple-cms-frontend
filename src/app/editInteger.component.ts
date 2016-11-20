@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   <div>
     <h5>{{ resource.name }}</h5>
     <mdl-textfield type="text"
+      [(ngModel)]="value"
       label="Number..."
       pattern="-?[0-9]*(\.[0-9]+)?" 
       placeholder="type a number">
@@ -15,6 +16,7 @@ import { Component } from '@angular/core';
 })
 export class EditIntegerComponent {
   resource;
+  value;
   constructor() {
 
   }
@@ -22,4 +24,13 @@ export class EditIntegerComponent {
   init(res){
     this.resource = res;
   }
+
+  getResource(){
+    return this.resource;
+  }
+
+  getValue(){
+    return this.value;
+  }
 }
+

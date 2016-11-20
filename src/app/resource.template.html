@@ -18,7 +18,7 @@
     </mdl-list>
   </mdl-card-supporting-text>
   <mdl-card-menu>
-    <button mdl-button mdl-button-type="icon" mdl-ripple>
+    <button mdl-button mdl-button-type="icon" mdl-ripple (click)="refreshItems()">
       <mdl-icon>refresh</mdl-icon>
     </button>
   </mdl-card-menu>
@@ -35,7 +35,7 @@
   <h3 class="mdl-dialog__title">New item</h3>
   <div #container></div>
   <div class="mdl-dialog__actions">
-    <button mdl-button (click)="saveItem()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button mdl-button (click)="saveItem(newItemDialog)" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
     <button mdl-button (click)="newItemDialog.close()" mdl-ripple>Cancel</button>
   </div>
 </mdl-dialog>

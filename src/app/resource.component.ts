@@ -17,6 +17,7 @@ export class ResourceComponent {
 
   resourceName;
   items = [];
+  components = [];
   config;
 
   constructor(private service: AppState, private route: ActivatedRoute, private componentFactoryResolver: ComponentFactoryResolver) {
@@ -25,10 +26,7 @@ export class ResourceComponent {
     this.resourceName = this.route.snapshot.params['name'];
     this.route.params.subscribe((r:any) => {
       this.resourceName = r.name;
-      this.service.getItems(this.resourceName).then((items)=>{
-        console.log(items.json());
-        this.items = items.json();
-      });
+      this.refreshItems();
     });
 
     this.service.getConfig((config)=>{
@@ -44,9 +42,16 @@ export class ResourceComponent {
           let factory = this.componentFactoryResolver.resolveComponentFactory(this.variableComponentFactory(element.type));
           let c = this.container.createComponent(factory);  
           (<any>c.instance).init(element);
+          this.components.push(c.instance);
         });
-
       });
+    });
+  }
+
+  refreshItems(){
+    this.service.getItems(this.resourceName).then((items)=>{
+      console.log(items.json());
+      this.items = items.json();
     });
   }
 
@@ -61,8 +66,15 @@ export class ResourceComponent {
 
   }
 
-  saveItem(){
-
+  saveItem(dialog){
+    let item = {};
+    this.components.forEach(c => {
+      item[c.getResource().field] = c.getValue();
+    });
+    this.service.putItem(this.resourceName, item).then((res)=>{
+      this.refreshItems();
+      dialog.close();
+    });
   }
     
   
