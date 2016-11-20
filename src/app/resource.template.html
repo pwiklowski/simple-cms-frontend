@@ -1,0 +1,28 @@
+<mdl-card mdl-shadow="2" mdl-card-expand>
+  <mdl-card-title>
+    <h2 mdl-card-title-text>
+      {{ resourceName }}
+    </h2>
+  </mdl-card-title>
+  <mdl-card-supporting-text>
+    <mdl-list>
+      <template ngFor let-item [ngForOf]="items">
+        <mdl-list-item mdl-ripple>
+          <mdl-list-item-primary-content>
+            <mdl-icon mdl-list-item-icon>data_usage</mdl-icon>
+            {{ item._id }}
+          </mdl-list-item-primary-content>
+          <mdl-list-item-secondary-content>
+            <mdl-list-item-secondary-info>{{ item }}</mdl-list-item-secondary-info>
+          </mdl-list-item-secondary-content>
+          <mdl-icon mdl-list-item-icon>delete</mdl-icon>
+        </mdl-list-item>
+      </template>
+    </mdl-list>
+  </mdl-card-supporting-text>
+  <mdl-card-menu>
+    <button mdl-button mdl-button-type="icon" mdl-ripple>
+      <mdl-icon>refresh</mdl-icon>
+    </button>
+  </mdl-card-menu>
+</mdl-card>

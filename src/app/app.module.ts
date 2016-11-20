@@ -9,8 +9,9 @@ import { MdlModule } from 'angular2-mdl';
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
-import { AppState, InternalStateType } from './app.service';
+import { AppState } from './app.service';
 import { HomeComponent } from './home.component';
+import { ResourceComponent } from './resource.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -18,7 +19,6 @@ const APP_PROVIDERS = [
 ];
 
 type StoreType = {
-  state: InternalStateType,
   restoreInputValues: () => void,
   disposeOldHosts: () => void
 };
@@ -27,7 +27,8 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ResourceComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -45,26 +46,20 @@ export class AppModule {
   constructor(public appRef: ApplicationRef, public appState: AppState) {}
 
   hmrOnInit(store: StoreType) {
-    if (!store || !store.state) return;
     console.log('HMR store', JSON.stringify(store, null, 2));
-    // set state
-    this.appState._state = store.state;
-    // set input values
+
     if ('restoreInputValues' in store) {
       let restoreInputValues = store.restoreInputValues;
       setTimeout(restoreInputValues);
     }
 
     this.appRef.tick();
-    delete store.state;
     delete store.restoreInputValues;
   }
 
   hmrOnDestroy(store: StoreType) {
     const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
     // save state
-    const state = this.appState._state;
-    store.state = state;
     // recreate root elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
     // save input values

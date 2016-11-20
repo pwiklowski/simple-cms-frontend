@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { AppState } from './app.service';
 
 @Component({
@@ -19,27 +19,34 @@ import { AppState } from './app.service';
     <mdl-layout-drawer>
       <mdl-layout-title>Resources</mdl-layout-title>
       <nav class="mdl-navigation">
-          <div class="mdl-navigation__link" >
-          sdf
+        <template ngFor let-resource [ngForOf]="resources">
+          <div class="mdl-navigation__link" (click)="showResource(resource); layout.toggleDrawer()">
+            {{ resource.name }}
           </div>
+        </template>
       </nav>
     </mdl-layout-drawer>
     <mdl-layout-content>
      <router-outlet></router-outlet>
     </mdl-layout-content>
   </mdl-layout>
-  
-  
-  
-  <main> </main>`
+ `
  })
 export class AppComponent {
-  constructor(public appState: AppState) {
+  resources = [];
+  constructor(public appState: AppState, private router: Router) {
 
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+    this.appState.getConfig((config)=>{
+      this.resources = config.resources;
+      console.log(config);
+    });
+  }
+
+  showResource(resource){
+    this.router.navigate(['/resource', resource.name]);
   }
 
 }
