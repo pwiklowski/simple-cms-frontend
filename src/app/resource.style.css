@@ -2,3 +2,9 @@
   width: auto;
   margin: 20px;
 }
+.button-add{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+
+}

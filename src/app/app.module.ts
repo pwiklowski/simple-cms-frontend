@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { AppState } from './app.service';
 import { HomeComponent } from './home.component';
 import { ResourceComponent } from './resource.component';
+import { EditIntegerComponent } from './editInteger.component';
+import { EditStringComponent } from './editString.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -28,7 +30,9 @@ type StoreType = {
   declarations: [
     AppComponent,
     HomeComponent,
-    ResourceComponent
+    ResourceComponent,
+    EditIntegerComponent,
+    EditStringComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -36,6 +40,10 @@ type StoreType = {
     HttpModule,
     MdlModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+  ],
+  entryComponents: [
+    EditIntegerComponent,
+    EditStringComponent
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

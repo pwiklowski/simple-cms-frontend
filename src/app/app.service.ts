@@ -13,6 +13,10 @@ export class AppState {
     return this.http.get("/api/"+resource).toPromise();
   }   
 
+  putItem(resource, item){
+    return this.http.put("/api/"+resource, item).toPromise();
+  }
+
   getConfig(callback){
     this.http.get("/api/config").toPromise().then(res => {
         callback(res.json());

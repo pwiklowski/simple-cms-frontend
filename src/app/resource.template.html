@@ -23,3 +23,19 @@
     </button>
   </mdl-card-menu>
 </mdl-card>
+
+<button class="button-add" mdl-button mdl-button-type="fab" mdl-ripple (click)="newItemDialog.show()">
+  <mdl-icon>add</mdl-icon>
+</button>
+
+
+<mdl-dialog #newItemDialog 
+    [mdl-dialog-config]="{ clickOutsideToClose: true, styles:{'width': '80%'}}">
+
+  <h3 class="mdl-dialog__title">New item</h3>
+  <div #container></div>
+  <div class="mdl-dialog__actions">
+    <button mdl-button (click)="saveItem()" mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Save</button>
+    <button mdl-button (click)="newItemDialog.close()" mdl-ripple>Cancel</button>
+  </div>
+</mdl-dialog>
