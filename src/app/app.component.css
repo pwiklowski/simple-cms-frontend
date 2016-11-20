@@ -6,3 +6,7 @@ html, body{
 span.active {
   background-color: gray;
 }
+
+.mdl-layout__content{
+  background-color: #eaeaea;
+}

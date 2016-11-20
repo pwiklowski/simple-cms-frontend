@@ -48,5 +48,4 @@ export class AppComponent {
   showResource(resource){
     this.router.navigate(['/resource', resource.name]);
   }
-
 }
