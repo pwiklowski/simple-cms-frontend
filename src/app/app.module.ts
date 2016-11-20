@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { MdlModule } from 'angular2-mdl';
 
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
@@ -32,6 +33,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    MdlModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
